@@ -7,3 +7,4 @@ mailgun_api_key: asdfasdfasdf
 rackspace_username: me
 rackspace_api_key: 1234567890
 rackspace_region: dfw
+queue_name: perilevents

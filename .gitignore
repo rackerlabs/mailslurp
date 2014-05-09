@@ -1,2 +1,5 @@
 # Ignore the real configuration file.
 mailslurp.yml
+
+# And the real Unicorn config.
+unicorn.rb

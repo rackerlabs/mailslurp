@@ -15,10 +15,12 @@ bundle install
 # Set up your configuration
 cp mailslurp.yml.example mailslurp.yml
 ${EDITOR} mailslurp.yml
+cp unicorn.rb.example unicorn.example
+${EDITOR} unicorn.rb # Optional
 
 # Register with Mailgun
 rake mailgun:register
 
 # Start it up
-rackup -p 4567
+unicorn
 ```

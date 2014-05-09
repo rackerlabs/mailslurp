@@ -14,15 +14,14 @@ class Mailslurp < Sinatra::Base
 
     # Log in to Cloud Queues.
     service = Fog::Rackspace::Queues.new(
-      :provider => 'rackspace'
       :rackspace_username => @mailconf['rackspace_username'],
       :rackspace_api_key => @mailconf['rackspace_api_key'],
       :rackspace_region => @mailconf['rackspace_region']
     )
 
-    @q = service.queues.get(:key => @mailconf['queue_name'])
+    @q = service.queues.get(@mailconf['queue_name'])
     if @q.nil?
-      @q = service.queues.create(:key => @mailconf['queue_name'])
+      @q = service.queues.create(:name => @mailconf['queue_name'])
     end
   end
 
