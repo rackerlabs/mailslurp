@@ -1,0 +1,5 @@
+---
+hostname: example.com
+scheme: https
+
+mailgun_api_key: asdfasdfasdf
