@@ -5,3 +5,4 @@ mailslurp.yml
 unicorn.rb
 
 .mailgunned
+unicorn.pid
