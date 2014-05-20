@@ -25,6 +25,10 @@ class Mailslurp < Sinatra::Base
     end
   end
 
+  get '/' do
+    'Online and ready to receive.'
+  end
+
   post '/incoming' do
     logger.info "Got a message!"
     logger.info params.inspect
