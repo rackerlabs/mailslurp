@@ -3,3 +3,5 @@ mailslurp.yml
 
 # And the real Unicorn config.
 unicorn.rb
+
+.mailgunned
