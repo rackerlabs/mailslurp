@@ -3,6 +3,7 @@
 require 'sinatra/base'
 require 'fog'
 require 'yaml'
+require 'time'
 
 class Mailslurp < Sinatra::Base
 
@@ -32,6 +33,17 @@ class Mailslurp < Sinatra::Base
   post '/incoming' do
     logger.info "Got a message!"
     logger.info params.inspect
+
+    # Construct an event body from the message.
+    subject = params['Subject'].gsub(/^(?:(?:Re:|Fwd:)\s*)+/, '')
+
+    event = {
+      reporter: 'mailslurp',
+      title: subject,
+      incident_date: Time.parse(params['Date']).to_i
+    }
+
+    @q.enqueue event, 3600
 
     200
   end
