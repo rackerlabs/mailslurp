@@ -2,7 +2,7 @@ require 'multimap'
 require 'restclient'
 require 'yaml'
 
-MAILGUNNED = File.join __dirname__, '.mailgunned'
+MAILGUNNED = File.join(__dir__, '.mailgunned')
 
 task :configure do
   path = File.join(__dir__, 'mailslurp.yml')
