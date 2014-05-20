@@ -2,6 +2,8 @@ require 'multimap'
 require 'restclient'
 require 'yaml'
 
+MAILGUNNED = File.join __dirname__, '.mailgunned'
+
 task :configure do
   path = File.join(__dir__, 'mailslurp.yml')
   @config = YAML.load_file(path)
@@ -11,6 +13,11 @@ namespace :mailgun do
 
   desc 'Configure Mailgun routes to point to this domain.'
   task :register => :configure do
+    if File.exist? MAILGUNNED
+      puts 'Already registered with mailgun. Skipping.'
+      next
+    end
+
     target = "#{@config['scheme']}://#{@config['hostname']}/incoming"
     puts "Configuring Mailgun to forward everything to: #{target}"
 
@@ -22,6 +29,8 @@ namespace :mailgun do
 
     RestClient.post "https://api:#{@config['mailgun_api_key']}" \
       "@api.mailgun.net/v2/routes", data
+
+    File.write MAILGUNNED, "Mailgunned at #{Time.now}"
   end
 
 end
